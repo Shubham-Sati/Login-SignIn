@@ -5,6 +5,8 @@ import { useState } from "react";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { darkTheme, lightTheme } from "./utils/Theme";
+import Home from "./pages/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -50,9 +52,18 @@ function App() {
             <DarkModeIcon />
           )}
         </Container>
-        <SignInBox>
-          <SignIn />
-        </SignInBox>
+        <>
+          <BrowserRouter>
+            <SignInBox>
+              <Routes>
+                <Route path="/">
+                  <Route index element={<SignIn />} />
+                  <Route path="home" element={<Home />} />
+                </Route>
+              </Routes>
+            </SignInBox>
+          </BrowserRouter>
+        </>
       </Wrapper>
     </ThemeProvider>
   );
