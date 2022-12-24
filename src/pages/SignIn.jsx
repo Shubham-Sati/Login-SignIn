@@ -5,8 +5,9 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "../config/Firebase";
+import { auth, provider } from "../config/Firebase";
 import { useNavigate } from "react-router-dom";
+import { signInWithPopup } from "firebase/auth";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -66,6 +67,7 @@ const Signin = () => {
     password: "",
     error: "",
   });
+  const [googleError, setGoogleError] = useState("");
 
   const [signup, setSignup] = useState({
     username: "",
@@ -174,6 +176,17 @@ const Signin = () => {
       });
   };
 
+  const handleSignInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(result);
+        navigate("/home");
+      })
+      .catch((error) => {
+        setGoogleError(() => "Something went wrong. Try again");
+      });
+  };
+
   return (
     <Wrapper>
       <Title>Sign in</Title>
@@ -195,7 +208,7 @@ const Signin = () => {
       {signin.error && <Span>{signin.error}</Span>}
       <Button onClick={handleSignIn}>Sign in</Button>
       <Title>or</Title>
-      <Button>signin with Google</Button>
+      <Button onClick={handleSignInWithGoogle}>Sign in with Google</Button>
       <Title>or</Title>
       <Input
         type="text"
