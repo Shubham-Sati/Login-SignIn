@@ -67,7 +67,6 @@ const Signin = () => {
     password: "",
     error: "",
   });
-  const [googleError, setGoogleError] = useState("");
 
   const [signup, setSignup] = useState({
     username: "",
@@ -183,7 +182,7 @@ const Signin = () => {
         navigate("/home");
       })
       .catch((error) => {
-        setGoogleError(() => "Something went wrong. Try again");
+        alert("Something went wrong. Try again");
       });
   };
 
