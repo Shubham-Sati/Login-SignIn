@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth , GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_KEY,
+  apiKey: "AIzaSyDgmAIc5Pdvq4sMG1H4rPma5BnoRCNi58A",
   authDomain: "login-signin-e7326.firebaseapp.com",
   projectId: "login-signin-e7326",
   storageBucket: "login-signin-e7326.appspot.com",
@@ -14,5 +14,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+const provider = new GoogleAuthProvider();
 
-export { app, auth };
+export { app, auth, provider };
